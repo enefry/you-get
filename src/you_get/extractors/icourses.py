@@ -42,7 +42,8 @@ def icourses_download(url, output_dir='.', **kwargs):
         real_url = icourses_parser.update_url(0)
         headers = fake_headers.copy()
         headers['Referer'] = url
-        download_urls_icourses(real_url, title, 'flv',total_size=size, output_dir=output_dir, max_size=15728640, dyn_callback=icourses_parser.update_url)
+        download_urls_icourses(real_url, title, 'flv', total_size=size, output_dir=output_dir, max_size=15728640,
+                               dyn_callback=icourses_parser.update_url)
     return
 
 
@@ -71,7 +72,7 @@ def public_course_playlist(url, page=None):
     if page is None:
         page = get_content(url)
     playlist = re.findall(patt, page)
-    return [(host+i[0], i[1]) for i in playlist]
+    return [(host + i[0], i[1]) for i in playlist]
 
 
 def public_course_get_title(url, page=None):
@@ -81,7 +82,7 @@ def public_course_get_title(url, page=None):
         page = get_content(url)
     seq_num = int(re.search(patt, page).group(1)) - 1
     course_main_title = get_course_title(url, 'public', page)
-    return '{}_第{}讲_{}'.format(course_main_title, seq_num+1, public_course_playlist(url, page)[seq_num][1])
+    return '{}_第{}讲_{}'.format(course_main_title, seq_num + 1, public_course_playlist(url, page)[seq_num][1])
 
 
 def icourses_playlist_download(url, output_dir='.', **kwargs):
@@ -261,7 +262,7 @@ class ICousesExactor(object):
         fmt_str = '%-m-%-d/%-H:%-M:%-S'
         now = datetime.datetime.now()
         try:
-            date_str =  now.strftime(fmt_str)
+            date_str = now.strftime(fmt_str)
         except ValueError:  # msvcrt
             date_str = '{}-{}/{}:{}:{}'.format(now.month, now.day, now.hour, now.minute, now.second)
         return date_str
@@ -288,7 +289,8 @@ class ICousesExactor(object):
         media_host = parse.urlparse(media_url).netloc
         ran = random.randint(0, 9999999)
         ssl_callback = get_content('http://{}/ssl/ssl.shtml?r={}'.format(media_host, ran)).split(',')
-        ssl_ts = int(datetime.datetime.strptime(ssl_callback[1], "%b %d %H:%M:%S %Y").timestamp() + int(ssl_callback[0]))
+        ssl_ts = int(
+            datetime.datetime.strptime(ssl_callback[1], "%b %d %H:%M:%S %Y").timestamp() + int(ssl_callback[0]))
         sign_this = self.__class__.ENCRYPT_SALT + parse.urlparse(media_url).path + str(ssl_ts)
         arg_h = base64.b64encode(hashlib.md5(bytes(sign_this, 'utf-8')).digest(), altchars=b'-_')
         return ssl_ts, arg_h.decode('utf-8').strip('=')
@@ -323,6 +325,7 @@ def url_save_icourses(url, filepath, bar, total_size, dyn_callback=None, is_part
         if callable(dyn_callback):
             logging.debug('Calling callback %s for new URL from %s' % (dyn_callback.__name__, received))
             return dyn_callback(received)
+
     if bar is None:
         bar = DummyProgressBar()
     if os.path.exists(filepath):
@@ -359,18 +362,18 @@ def url_save_icourses(url, filepath, bar, total_size, dyn_callback=None, is_part
     if headers is None:
         headers = {}
     response = urlopen_with_retry(request.Request(url, headers=headers))
-# Do not update content-length here.
-# Only the 1st segment's content-length is the content-length of the file.
-# For other segments, content-length is the standard one, 15 * 1024 * 1024
+    # Do not update content-length here.
+    # Only the 1st segment's content-length is the content-length of the file.
+    # For other segments, content-length is the standard one, 15 * 1024 * 1024
 
     with open(temp_filepath, open_mode) as output:
         before_this_uri = received
-# received - before_this_uri is size of the buf we get from one uri
+        # received - before_this_uri is size of the buf we get from one uri
         while True:
             update_bs = 256 * 1024
             left_bytes = total_size - received
             to_read = left_bytes if left_bytes <= update_bs else update_bs
-# calc the block size to read -- The server can fail to send an EOF
+            # calc the block size to read -- The server can fail to send an EOF
             buffer = response.read(to_read)
             if not buffer:
                 logging.debug('Got EOF from server')
@@ -390,6 +393,7 @@ def url_save_icourses(url, filepath, bar, total_size, dyn_callback=None, is_part
     if os.access(filepath, os.W_OK):
         os.remove(filepath)  # on Windows rename could fail if destination filepath exists
     os.rename(temp_filepath, filepath)
+
 
 site_info = 'icourses.cn'
 download = icourses_download

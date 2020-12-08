@@ -20,111 +20,112 @@ from .util import log, term
 from .util.git import get_version
 from .util.strings import get_filename, unescape_html
 from . import json_output as json_output_
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8')
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf8')
 
 SITES = {
-    '163'              : 'netease',
-    '56'               : 'w56',
-    '365yg'            : 'toutiao',
-    'acfun'            : 'acfun',
-    'archive'          : 'archive',
-    'baidu'            : 'baidu',
-    'bandcamp'         : 'bandcamp',
-    'baomihua'         : 'baomihua',
-    'bigthink'         : 'bigthink',
-    'bilibili'         : 'bilibili',
-    'cctv'             : 'cntv',
-    'cntv'             : 'cntv',
-    'cbs'              : 'cbs',
-    'coub'             : 'coub',
-    'dailymotion'      : 'dailymotion',
-    'douban'           : 'douban',
-    'douyin'           : 'douyin',
-    'douyu'            : 'douyutv',
-    'ehow'             : 'ehow',
-    'facebook'         : 'facebook',
-    'fc2'              : 'fc2video',
-    'flickr'           : 'flickr',
-    'freesound'        : 'freesound',
-    'fun'              : 'funshion',
-    'google'           : 'google',
-    'giphy'            : 'giphy',
-    'heavy-music'      : 'heavymusic',
-    'huomao'           : 'huomaotv',
-    'iask'             : 'sina',
-    'icourses'         : 'icourses',
-    'ifeng'            : 'ifeng',
-    'imgur'            : 'imgur',
-    'in'               : 'alive',
-    'infoq'            : 'infoq',
-    'instagram'        : 'instagram',
-    'interest'         : 'interest',
-    'iqilu'            : 'iqilu',
-    'iqiyi'            : 'iqiyi',
-    'ixigua'           : 'ixigua',
-    'isuntv'           : 'suntv',
-    'iwara'            : 'iwara',
-    'joy'              : 'joy',
-    'kankanews'        : 'bilibili',
-    'kakao'            : 'kakao',
-    'khanacademy'      : 'khan',
-    'ku6'              : 'ku6',
-    'kuaishou'         : 'kuaishou',
-    'kugou'            : 'kugou',
-    'kuwo'             : 'kuwo',
-    'le'               : 'le',
-    'letv'             : 'le',
-    'lizhi'            : 'lizhi',
-    'longzhu'          : 'longzhu',
-    'magisto'          : 'magisto',
-    'metacafe'         : 'metacafe',
-    'mgtv'             : 'mgtv',
-    'miomio'           : 'miomio',
-    'missevan'         : 'missevan',
-    'mixcloud'         : 'mixcloud',
-    'mtv81'            : 'mtv81',
-    'miaopai'          : 'yixia',
-    'naver'            : 'naver',
-    '7gogo'            : 'nanagogo',
-    'nicovideo'        : 'nicovideo',
-    'pinterest'        : 'pinterest',
-    'pixnet'           : 'pixnet',
-    'pptv'             : 'pptv',
-    'qingting'         : 'qingting',
-    'qq'               : 'qq',
-    'showroom-live'    : 'showroom',
-    'sina'             : 'sina',
-    'smgbb'            : 'bilibili',
-    'sohu'             : 'sohu',
-    'soundcloud'       : 'soundcloud',
-    'ted'              : 'ted',
-    'theplatform'      : 'theplatform',
-    'tiktok'           : 'tiktok',
-    'tucao'            : 'tucao',
-    'tudou'            : 'tudou',
-    'tumblr'           : 'tumblr',
-    'twimg'            : 'twitter',
-    'twitter'          : 'twitter',
-    'ucas'             : 'ucas',
-    'vimeo'            : 'vimeo',
-    'wanmen'           : 'wanmen',
-    'weibo'            : 'miaopai',
-    'veoh'             : 'veoh',
-    'vine'             : 'vine',
-    'vk'               : 'vk',
-    'xiami'            : 'xiami',
-    'xiaokaxiu'        : 'yixia',
-    'xiaojiadianvideo' : 'fc2video',
-    'ximalaya'         : 'ximalaya',
-    'xinpianchang'     : 'xinpianchang',
-    'yinyuetai'        : 'yinyuetai',
-    'yizhibo'          : 'yizhibo',
-    'youku'            : 'youku',
-    'youtu'            : 'youtube',
-    'youtube'          : 'youtube',
-    'zhanqi'           : 'zhanqi',
-    'zhibo'            : 'zhibo',
-    'zhihu'            : 'zhihu',
+    '163': 'netease',
+    '56': 'w56',
+    '365yg': 'toutiao',
+    'acfun': 'acfun',
+    'archive': 'archive',
+    'baidu': 'baidu',
+    'bandcamp': 'bandcamp',
+    'baomihua': 'baomihua',
+    'bigthink': 'bigthink',
+    'bilibili': 'bilibili',
+    'cctv': 'cntv',
+    'cntv': 'cntv',
+    'cbs': 'cbs',
+    'coub': 'coub',
+    'dailymotion': 'dailymotion',
+    'douban': 'douban',
+    'douyin': 'douyin',
+    'douyu': 'douyutv',
+    'ehow': 'ehow',
+    'facebook': 'facebook',
+    'fc2': 'fc2video',
+    'flickr': 'flickr',
+    'freesound': 'freesound',
+    'fun': 'funshion',
+    'google': 'google',
+    'giphy': 'giphy',
+    'heavy-music': 'heavymusic',
+    'huomao': 'huomaotv',
+    'iask': 'sina',
+    'icourses': 'icourses',
+    'ifeng': 'ifeng',
+    'imgur': 'imgur',
+    'in': 'alive',
+    'infoq': 'infoq',
+    'instagram': 'instagram',
+    'interest': 'interest',
+    'iqilu': 'iqilu',
+    'iqiyi': 'iqiyi',
+    'ixigua': 'ixigua',
+    'isuntv': 'suntv',
+    'iwara': 'iwara',
+    'joy': 'joy',
+    'kankanews': 'bilibili',
+    'kakao': 'kakao',
+    'khanacademy': 'khan',
+    'ku6': 'ku6',
+    'kuaishou': 'kuaishou',
+    'kugou': 'kugou',
+    'kuwo': 'kuwo',
+    'le': 'le',
+    'letv': 'le',
+    'lizhi': 'lizhi',
+    'longzhu': 'longzhu',
+    'magisto': 'magisto',
+    'metacafe': 'metacafe',
+    'mgtv': 'mgtv',
+    'miomio': 'miomio',
+    'missevan': 'missevan',
+    'mixcloud': 'mixcloud',
+    'mtv81': 'mtv81',
+    'miaopai': 'yixia',
+    'naver': 'naver',
+    '7gogo': 'nanagogo',
+    'nicovideo': 'nicovideo',
+    'pinterest': 'pinterest',
+    'pixnet': 'pixnet',
+    'pptv': 'pptv',
+    'qingting': 'qingting',
+    'qq': 'qq',
+    'showroom-live': 'showroom',
+    'sina': 'sina',
+    'smgbb': 'bilibili',
+    'sohu': 'sohu',
+    'soundcloud': 'soundcloud',
+    'ted': 'ted',
+    'theplatform': 'theplatform',
+    'tiktok': 'tiktok',
+    'tucao': 'tucao',
+    'tudou': 'tudou',
+    'tumblr': 'tumblr',
+    'twimg': 'twitter',
+    'twitter': 'twitter',
+    'ucas': 'ucas',
+    'vimeo': 'vimeo',
+    'wanmen': 'wanmen',
+    'weibo': 'miaopai',
+    'veoh': 'veoh',
+    'vine': 'vine',
+    'vk': 'vk',
+    'xiami': 'xiami',
+    'xiaokaxiu': 'yixia',
+    'xiaojiadianvideo': 'fc2video',
+    'ximalaya': 'ximalaya',
+    'xinpianchang': 'xinpianchang',
+    'yinyuetai': 'yinyuetai',
+    'yizhibo': 'yizhibo',
+    'youku': 'youku',
+    'youtu': 'youtube',
+    'youtube': 'youtube',
+    'zhanqi': 'zhanqi',
+    'zhibo': 'zhibo',
+    'zhihu': 'zhihu',
 }
 
 dry_run = False
@@ -143,7 +144,8 @@ fake_headers = {
     'Accept-Charset': 'UTF-8,*;q=0.5',
     'Accept-Encoding': 'gzip,deflate,sdch',
     'Accept-Language': 'en-US,en;q=0.8',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43',  # noqa
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43',
+    # noqa
 }
 
 if sys.stdout.isatty():
@@ -279,7 +281,7 @@ def launch_player(player, urls):
     assert urls
     if (sys.version_info >= (3, 3)):
         import shutil
-        exefile=shlex.split(player)[0]
+        exefile = shlex.split(player)[0]
         if shutil.which(exefile) is not None:
             subprocess.call(shlex.split(player) + urls)
         else:
@@ -338,7 +340,7 @@ def undeflate(data):
     """
     import zlib
     decompressobj = zlib.decompressobj(-zlib.MAX_WBITS)
-    return decompressobj.decompress(data)+decompressobj.flush()
+    return decompressobj.decompress(data) + decompressobj.flush()
 
 
 # DEPRECATED in favor of get_content()
@@ -620,8 +622,8 @@ def url_locations(urls, faker=False, headers={}):
 
 
 def url_save(
-    url, filepath, bar, refer=None, is_part=False, faker=False,
-    headers=None, timeout=None, **kwargs
+        url, filepath, bar, refer=None, is_part=False, faker=False,
+        headers=None, timeout=None, **kwargs
 ):
     tmp_headers = headers.copy() if headers is not None else {}
     # When a referer specified with param refer,
@@ -673,6 +675,7 @@ def url_save(
                         else:
                             def numreturn(a):
                                 return ' (' + str(int(a.group()[2:-1]) + 1) + ').'
+
                             thisfile = finder.sub(numreturn, path) + ext
                         filepath = os.path.join(os.path.dirname(filepath), thisfile)
                         print('Changing name to %s' % tr(os.path.basename(filepath)), '...')
@@ -788,8 +791,9 @@ def url_save(
 class SimpleProgressBar:
     term_size = term.get_terminal_size()[1]
 
-    def __init__(self, total_size, total_pieces=1):
+    def __init__(self, total_size: int, total_pieces: int = 1, title: str = ""):
         self.displayed = False
+        self.title = title
         self.total_size = total_size
         self.total_pieces = total_pieces
         self.current_piece = 1
@@ -802,11 +806,14 @@ class SimpleProgressBar:
         total_str = '%5s' % round(self.total_size / 1048576, 1)
         total_str_width = max(len(total_str), 5)
         self.bar_size = self.term_size - 28 - 2 * total_pieces_len \
-            - 2 * total_str_width
+                        - 2 * total_str_width
         self.bar = '{:>4}%% ({:>%s}/%sMB) ├{:─<%s}┤[{:>%s}/{:>%s}] {}' % (
             total_str_width, total_str, self.bar_size, total_pieces_len,
             total_pieces_len
         )
+
+    def setTitle(self, title: str):
+        self.title = title
 
     def update(self):
         self.displayed = True
@@ -855,12 +862,16 @@ class SimpleProgressBar:
 
 
 class PiecesProgressBar:
-    def __init__(self, total_size, total_pieces=1):
+    def __init__(self, total_size: int, total_pieces: int = 1, title: str = ""):
+        self.title = title
         self.displayed = False
         self.total_size = total_size
         self.total_pieces = total_pieces
         self.current_piece = 1
         self.received = 0
+
+    def setTitle(self, title: str):
+        self.title = title
 
     def update(self):
         self.displayed = True
@@ -886,6 +897,9 @@ class PiecesProgressBar:
 class DummyProgressBar:
     def __init__(self, *args):
         pass
+
+    def setTitle(self, title: str):
+        self.title = title
 
     def update_received(self, n):
         pass
@@ -929,14 +943,16 @@ def get_output_filename(urls, title, ext, output_dir, merge, **kwargs):
     result = '%s.%s' % (result, merged_ext)
     return result.replace("'", "_")
 
+
 def print_user_agent(faker=False):
     urllib_default_user_agent = 'Python-urllib/%d.%d' % sys.version_info[:2]
     user_agent = fake_headers['User-Agent'] if faker else urllib_default_user_agent
     print('User Agent: %s' % user_agent)
 
+
 def download_urls(
-    urls, title, ext, total_size, output_dir='.', refer=None, merge=True,
-    faker=False, headers={}, **kwargs
+        urls, title, ext, total_size, output_dir='.', refer=None, merge=True,
+        faker=False, headers={}, **kwargs
 ):
     assert urls
     if json_output:
@@ -970,9 +986,9 @@ def download_urls(
     output_filepath = os.path.join(output_dir, output_filename)
 
     if total_size:
-        if not force and os.path.exists(output_filepath) and not auto_rename\
-                and (os.path.getsize(output_filepath) >= total_size * 0.9\
-                or skip_existing_file_size_check):
+        if not force and os.path.exists(output_filepath) and not auto_rename \
+                and (os.path.getsize(output_filepath) >= total_size * 0.9 \
+                     or skip_existing_file_size_check):
             if skip_existing_file_size_check:
                 log.w('Skipping %s without checking size: file already exists' % output_filepath)
             else:
@@ -982,6 +998,9 @@ def download_urls(
         bar = SimpleProgressBar(total_size, len(urls))
     else:
         bar = PiecesProgressBar(total_size, len(urls))
+    if "progressBar" in kwargs:
+        bar = kwargs["progressBar"]
+        bar.setup(total_size, len(urls), output_filename)
 
     if len(urls) == 1:
         url = urls[0]
@@ -995,6 +1014,7 @@ def download_urls(
     else:
         parts = []
         print('Downloading %s ...' % tr(output_filename))
+        bar.setTitle(output_filename)
         bar.update()
         for i, url in enumerate(urls):
             output_filename_i = get_output_filename(urls, title, ext, output_dir, merge, part=i)
@@ -1091,8 +1111,8 @@ def download_urls(
 
 
 def download_rtmp_url(
-    url, title, ext, params={}, total_size=0, output_dir='.', refer=None,
-    merge=True, faker=False
+        url, title, ext, params={}, total_size=0, output_dir='.', refer=None,
+        merge=True, faker=False
 ):
     assert url
     if dry_run:
@@ -1111,12 +1131,12 @@ def download_rtmp_url(
         has_rtmpdump_installed, download_rtmpdump_stream
     )
     assert has_rtmpdump_installed(), 'RTMPDump not installed.'
-    download_rtmpdump_stream(url,  title, ext, params, output_dir)
+    download_rtmpdump_stream(url, title, ext, params, output_dir)
 
 
 def download_url_ffmpeg(
-    url, title, ext, params={}, total_size=0, output_dir='.', refer=None,
-    merge=True, faker=False, stream=True
+        url, title, ext, params={}, total_size=0, output_dir='.', refer=None,
+        merge=True, faker=False, stream=True
 ):
     assert url
     if dry_run:
@@ -1138,7 +1158,7 @@ def download_url_ffmpeg(
         dotPos = output_filename.rfind('.')
         if dotPos > 0:
             title = output_filename[:dotPos]
-            ext = output_filename[dotPos+1:]
+            ext = output_filename[dotPos + 1:]
         else:
             title = output_filename
 
@@ -1150,6 +1170,7 @@ def download_url_ffmpeg(
 def playlist_not_supported(name):
     def f(*args, **kwargs):
         raise NotImplementedError('Playlist is not supported for ' + name)
+
     return f
 
 
@@ -1337,8 +1358,8 @@ def load_cookies(cookiefile):
         #   - https://docs.python.org/3/library/http.cookiejar.html#http.cookiejar.MozillaCookieJar
         #   - https://github.com/python/cpython/blob/4b219ce/Lib/http/cookiejar.py#L2014
         #   - https://curl.haxx.se/libcurl/c/CURLOPT_COOKIELIST.html#EXAMPLE
-        #cookies = cookiejar.MozillaCookieJar(cookiefile)
-        #cookies.load()
+        # cookies = cookiejar.MozillaCookieJar(cookiefile)
+        # cookies.load()
         from http.cookiejar import Cookie
         cookies = cookiejar.MozillaCookieJar()
         now = time.time()
@@ -1350,12 +1371,12 @@ def load_cookies(cookiefile):
 
                 # skip comments and blank lines XXX what is $ for?
                 if (line.strip().startswith(("#", "$")) or
-                    line.strip() == ""):
+                        line.strip() == ""):
                     if not line.strip().startswith('#HttpOnly_'):  # skip for #HttpOnly_
                         continue
 
                 domain, domain_specified, path, secure, expires, name, value = \
-                        line.split("\t")
+                    line.split("\t")
                 secure = (secure == "TRUE")
                 domain_specified = (domain_specified == "TRUE")
                 if name == "":
@@ -1426,7 +1447,9 @@ def set_socks_proxy(proxy):
             proxy_info = proxy.split("@")
             socks_proxy_addrs = proxy_info[1].split(':')
             socks_proxy_auth = proxy_info[0].split(":")
-            print(socks_proxy_auth[0]+" "+socks_proxy_auth[1]+" "+socks_proxy_addrs[0]+" "+socks_proxy_addrs[1])
+            print(
+                socks_proxy_auth[0] + " " + socks_proxy_auth[1] + " " + socks_proxy_addrs[0] + " " + socks_proxy_addrs[
+                    1])
             socks.set_default_proxy(
                 socks.SOCKS5,
                 socks_proxy_addrs[0],
@@ -1436,19 +1459,20 @@ def set_socks_proxy(proxy):
                 socks_proxy_auth[1]
             )
         else:
-           socks_proxy_addrs = proxy.split(':')
-           print(socks_proxy_addrs[0]+" "+socks_proxy_addrs[1])
-           socks.set_default_proxy(
-               socks.SOCKS5,
-               socks_proxy_addrs[0],
-               int(socks_proxy_addrs[1]),
-           )
+            socks_proxy_addrs = proxy.split(':')
+            print(socks_proxy_addrs[0] + " " + socks_proxy_addrs[1])
+            socks.set_default_proxy(
+                socks.SOCKS5,
+                socks_proxy_addrs[0],
+                int(socks_proxy_addrs[1]),
+            )
         socket.socket = socks.socksocket
 
         def getaddrinfo(*args):
             return [
                 (socket.AF_INET, socket.SOCK_STREAM, 6, '', (args[0], args[1]))
             ]
+
         socket.getaddrinfo = getaddrinfo
     except ImportError:
         log.w(
@@ -1645,7 +1669,6 @@ def script_main(download, download_playlist, **kwargs):
         # ignore ssl
         insecure = True
 
-
     if args.no_proxy:
         set_http_proxy('')
     else:
@@ -1744,7 +1767,7 @@ def google_search(url):
         print('# you-get %s' % log.sprint(v[0][0], log.UNDERLINE))
         print()
     print('Best matched result:')
-    return(videos[0][0])
+    return (videos[0][0])
 
 
 def url_to_module(url):
@@ -1775,7 +1798,7 @@ def url_to_module(url):
         )
     else:
         try:
-            location = get_location(url) # t.co isn't happy with fake_headers
+            location = get_location(url)  # t.co isn't happy with fake_headers
         except:
             location = get_location(url, headers=fake_headers)
 
